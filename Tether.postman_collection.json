@@ -1,0 +1,267 @@
+{
+	"info": {
+		"_postman_id": "b1637746-9afc-4eda-ab36-7c384afb9c25",
+		"name": "Tether",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Stipop",
+			"item": [
+				{
+					"name": "Search",
+					"item": [
+						{
+							"name": "Recent Search",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "eb8b7094d3085ee7d6ff7a4962d26461",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "apikey",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://messenger.stipop.io/v1/search/recent?userId=1",
+									"protocol": "https",
+									"host": [
+										"messenger",
+										"stipop",
+										"io"
+									],
+									"path": [
+										"v1",
+										"search",
+										"recent"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search Trending Stickers",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "eb8b7094d3085ee7d6ff7a4962d26461",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "apikey",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://messenger.stipop.io/v1/search/keyword?userId=1&lang=en&countryCode=SG&limit=20",
+									"protocol": "https",
+									"host": [
+										"messenger",
+										"stipop",
+										"io"
+									],
+									"path": [
+										"v1",
+										"search",
+										"keyword"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "1"
+										},
+										{
+											"key": "lang",
+											"value": "en"
+										},
+										{
+											"key": "countryCode",
+											"value": "SG"
+										},
+										{
+											"key": "limit",
+											"value": "20"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sticker Search",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "eb8b7094d3085ee7d6ff7a4962d26461",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "apikey",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://messenger.stipop.io/v1/search?userId=1&q=kiss&lang=en&pageNumber=1&limit=10",
+									"protocol": "https",
+									"host": [
+										"messenger",
+										"stipop",
+										"io"
+									],
+									"path": [
+										"v1",
+										"search"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "1"
+										},
+										{
+											"key": "q",
+											"value": "kiss"
+										},
+										{
+											"key": "lang",
+											"value": "en"
+										},
+										{
+											"key": "pageNumber",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Sticker Store",
+					"item": [
+						{
+							"name": "Trending Sticker Packs",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "eb8b7094d3085ee7d6ff7a4962d26461",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "apikey",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://messenger.stipop.io/v1/package?userId=1&lang=en&countryCode=SG&premium=N&limit=10&pageNumber=5&animated=Y",
+									"protocol": "https",
+									"host": [
+										"messenger",
+										"stipop",
+										"io"
+									],
+									"path": [
+										"v1",
+										"package"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "1"
+										},
+										{
+											"key": "lang",
+											"value": "en"
+										},
+										{
+											"key": "countryCode",
+											"value": "SG"
+										},
+										{
+											"key": "premium",
+											"value": "N"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										},
+										{
+											"key": "pageNumber",
+											"value": "5"
+										},
+										{
+											"key": "animated",
+											"value": "Y"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sticker Pack Info",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": null
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
