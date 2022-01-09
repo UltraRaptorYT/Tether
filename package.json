@@ -1,0 +1,27 @@
+{
+  "name": "tether",
+  "version": "1.0.0",
+  "description": "Kaninasaeyo this is our Appetizer Hackathon project <3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UltraRaptorYT/Tether.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UltraRaptorYT/Tether/issues"
+  },
+  "homepage": "https://github.com/UltraRaptorYT/Tether#readme",
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.2",
+    "redis": "^4.0.1",
+    "socket.io": "^4.4.1"
+  }
+}
