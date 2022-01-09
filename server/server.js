@@ -15,6 +15,10 @@ app.use(
   Routes
 );
 
+const io = require("socket.io")(server);
+const socketManager = require("./app/socketManager");
+io.on("connection", socketManager);
+
 server.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
