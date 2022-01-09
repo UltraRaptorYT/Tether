@@ -1,24 +1,15 @@
 require("dotenv").config();
+// const fetch = require("node-fetch");
 const express = require("express");
-const http = require("http");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const port = process.env.PORT;
 const app = express();
-const server = http.createServer(app);
-const Routes = require("./app/routes");
+const port = 3000;
 
-app.use(
-  cors(),
-  bodyParser.json(),
-  bodyParser.urlencoded({ extended: false }),
-  Routes
-);
+app.use(express.json());
 
-const io = require("socket.io")(server);
-const socketManager = require("./app/socketManager");
-io.on("connection", socketManager);
+app.get("/stickers/trending", async (req, res) => {
+  res.status(200).send("Hi");
+});
 
-server.listen(port, () => {
+app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
