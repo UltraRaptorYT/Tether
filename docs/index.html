@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <script type='text/javascript' src='https://cdn.scaledrone.com/scaledrone.min.js'></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      box-sizing: border-box;
+      background-color: #fff;
+      display: flex;
+      height: 100vh;
+      width: 100vw;
+      margin: 0;
+      align-items: center;
+      justify-content: center;
+      padding: 0px;
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    video {
+      transform: rotateY(180deg);
+      -webkit-transform:rotateY(180deg); /* Safari and Chrome */
+      -moz-transform:rotateY(180deg);
+      background: white;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    video{
+      background-image: url('load.gif');
+      background-size: contain;
+      user-select: none;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    #snackbar {
+  visibility: hidden; /* Hidden by default. Visible on click */
+  min-width: 250px; /* Set a default minimum width */
+  margin-left: -125px; /* Divide value of min-width by 2 */
+  background-color: #333; /* Black background color */
+  color: #fff; /* White text color */
+  text-align: center; /* Centered text */
+  border-radius: 2px; /* Rounded borders */
+  padding: 16px; /* Padding */
+  position: fixed; /* Sit on top of the screen */
+  z-index: 1; /* Add a z-index if needed */
+  left: 50%; /* Center the snackbar */
+  bottom: 30px;
+}
+
+#snackbar.show {
+  visibility: visible;
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {bottom: 0; opacity: 0.5;}
+  to {bottom: 10px; opacity: 1;}
+}
+
+@keyframes fadein {
+  from {bottom: 0; opacity: 0.5;}
+  to {bottom: 10px; opacity: 1;}
+}
+
+@-webkit-keyframes fadeout {
+  from {opacity: 1;}
+  to {transform: translateX(5px); opacity: 0;}
+}
+
+@keyframes fadeout {
+  from {opacity: 1;}
+  to {transform: translateX(5px); opacity: 0;}
+}
+    .remote{
+      width: 100vw !important;
+      position: fixed;
+      height: auto !important;
+    }
+    .local{
+      padding: 0;
+      height: auto;
+      width: 15vw;
+      position: fixed;
+      top: 2%;
+      right: 2%;
+    }
+    .z{
+      z-index: 30000;
+    }
+    .f{
+      position: absolute;
+      display: flex;
+      bottom: 5%;
+      backdrop-filter: blur(5px);
+      border-radius: 2rem;
+      color: #00000066;
+      padding-left: 0.2rem;
+      padding-right: 0.2rem;
+    }
+  </style>
+  <body>
+  <video id="localVideo" class="local z rounded-lg shadow-sm" autoplay muted></video>
+  <video id="remoteVideo" class="remote rounded" autoplay></video>
+  <footer class="f">
+    <p id="hash"></p>
+  </footer>
+  <div id="snackbar">Connection established...</div>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+.bow{
+  position: absolute;
+  z-index: 999;
+  bottom: 10%;
+  left: 15%;
+  width: 60px;
+  height: 60px;
+}
