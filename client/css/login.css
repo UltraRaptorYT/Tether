@@ -91,3 +91,8 @@ body {
 .form input::placeholder {
   color: whitesmoke;
 }
+
+a:link,a:hover{
+  color:purple;
+  text-decoration: none;
+}
