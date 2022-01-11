@@ -93,7 +93,7 @@ body {
   color: whitesmoke;
 }
 
-a:link,a:hover,a{
+a:link,a:hover,a:visited,a{
   color:whitesmoke;
   text-decoration: none;
 }
