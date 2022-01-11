@@ -16,10 +16,3 @@ const searchTrending = async(userId, lang, countryCode) => {
 export {
     searchTrending
 };
-
-
-
-
-// fetch('https://messenger.stipop.io/v1/search/keyword?userId=1&lang=en&countryCode=SG', { headers: { apikey: apikey } })
-//     .then(data => data.json())
-//     .then(json => console.log(json));
