@@ -94,6 +94,6 @@ body {
 }
 
 a:link,a:hover,a:visited,a{
-  color:whitesmoke;
-  text-decoration: none;
+  color:whitesmoke !important;
+  text-decoration: none !important;
 }
