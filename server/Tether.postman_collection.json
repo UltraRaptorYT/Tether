@@ -1,0 +1,1295 @@
+{
+	"info": {
+		"_postman_id": "b1637746-9afc-4eda-ab36-7c384afb9c25",
+		"name": "Tether",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Stipop",
+			"item": [
+				{
+					"name": "Search",
+					"item": [
+						{
+							"name": "Recent Search",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "eb8b7094d3085ee7d6ff7a4962d26461",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "apikey",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://messenger.stipop.io/v1/search/recent?userId=1",
+									"protocol": "https",
+									"host": [
+										"messenger",
+										"stipop",
+										"io"
+									],
+									"path": [
+										"v1",
+										"search",
+										"recent"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Search Trending Stickers",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "eb8b7094d3085ee7d6ff7a4962d26461",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "apikey",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://messenger.stipop.io/v1/search/keyword?userId=1&lang=en&countryCode=SG&limit=20",
+									"protocol": "https",
+									"host": [
+										"messenger",
+										"stipop",
+										"io"
+									],
+									"path": [
+										"v1",
+										"search",
+										"keyword"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "1"
+										},
+										{
+											"key": "lang",
+											"value": "en"
+										},
+										{
+											"key": "countryCode",
+											"value": "SG"
+										},
+										{
+											"key": "limit",
+											"value": "20"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sticker Search",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "eb8b7094d3085ee7d6ff7a4962d26461",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "apikey",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://messenger.stipop.io/v1/search?userId=1&q=kiss&lang=en&pageNumber=1&limit=10",
+									"protocol": "https",
+									"host": [
+										"messenger",
+										"stipop",
+										"io"
+									],
+									"path": [
+										"v1",
+										"search"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "1"
+										},
+										{
+											"key": "q",
+											"value": "kiss"
+										},
+										{
+											"key": "lang",
+											"value": "en"
+										},
+										{
+											"key": "pageNumber",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Sticker Store",
+					"item": [
+						{
+							"name": "Trending Sticker Packs",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "eb8b7094d3085ee7d6ff7a4962d26461",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "apikey",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://messenger.stipop.io/v1/package?userId=1&lang=en&countryCode=SG&premium=N&limit=10&pageNumber=5&animated=Y",
+									"protocol": "https",
+									"host": [
+										"messenger",
+										"stipop",
+										"io"
+									],
+									"path": [
+										"v1",
+										"package"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "1"
+										},
+										{
+											"key": "lang",
+											"value": "en"
+										},
+										{
+											"key": "countryCode",
+											"value": "SG"
+										},
+										{
+											"key": "premium",
+											"value": "N"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										},
+										{
+											"key": "pageNumber",
+											"value": "5"
+										},
+										{
+											"key": "animated",
+											"value": "Y"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Sticker Pack Info",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "eb8b7094d3085ee7d6ff7a4962d26461",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "apikey",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://messenger.stipop.io/v1/package/:packageId?userId=1",
+									"protocol": "https",
+									"host": [
+										"messenger",
+										"stipop",
+										"io"
+									],
+									"path": [
+										"v1",
+										"package",
+										":packageId"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "1"
+										}
+									],
+									"variable": [
+										{
+											"key": "packageId",
+											"value": "8202"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Download/Purchase Sticker",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "eb8b7094d3085ee7d6ff7a4962d26461",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "apikey",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "https://messenger.stipop.io/v1/download/:packageId?userId=3&isPurchase=N&lang=en&countryCode=SG",
+									"protocol": "https",
+									"host": [
+										"messenger",
+										"stipop",
+										"io"
+									],
+									"path": [
+										"v1",
+										"download",
+										":packageId"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "3"
+										},
+										{
+											"key": "isPurchase",
+											"value": "N"
+										},
+										{
+											"key": "lang",
+											"value": "en"
+										},
+										{
+											"key": "countryCode",
+											"value": "SG"
+										}
+									],
+									"variable": [
+										{
+											"key": "packageId",
+											"value": "8202"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "New Sticker Packs",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "eb8b7094d3085ee7d6ff7a4962d26461",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "apikey",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://messenger.stipop.io/v1/package/new?userId=1&lang=en&countryCode=SG&limit=10&pageNumber=5&animated=Y",
+									"protocol": "https",
+									"host": [
+										"messenger",
+										"stipop",
+										"io"
+									],
+									"path": [
+										"v1",
+										"package",
+										"new"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "1"
+										},
+										{
+											"key": "lang",
+											"value": "en"
+										},
+										{
+											"key": "countryCode",
+											"value": "SG"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										},
+										{
+											"key": "pageNumber",
+											"value": "5"
+										},
+										{
+											"key": "animated",
+											"value": "Y"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Main Sticker Banner (gives error)",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "eb8b7094d3085ee7d6ff7a4962d26461",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "apikey",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://messenger.stipop.io/v1/curation/banner?userId=2&lang=en&countryCode=SG&limit=10",
+									"protocol": "https",
+									"host": [
+										"messenger",
+										"stipop",
+										"io"
+									],
+									"path": [
+										"v1",
+										"curation",
+										"banner"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "2"
+										},
+										{
+											"key": "lang",
+											"value": "en"
+										},
+										{
+											"key": "countryCode",
+											"value": "SG"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Recently Viewed Packs",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "eb8b7094d3085ee7d6ff7a4962d26461",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "apikey",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://messenger.stipop.io/v1/package/recent/:userId",
+									"protocol": "https",
+									"host": [
+										"messenger",
+										"stipop",
+										"io"
+									],
+									"path": [
+										"v1",
+										"package",
+										"recent",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "View Sticker Category",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "eb8b7094d3085ee7d6ff7a4962d26461",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "apikey",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://messenger.stipop.io/v1/category",
+									"protocol": "https",
+									"host": [
+										"messenger",
+										"stipop",
+										"io"
+									],
+									"path": [
+										"v1",
+										"category"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Sticker Send",
+					"item": [
+						{
+							"name": "Register Sticker Send",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "eb8b7094d3085ee7d6ff7a4962d26461",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "apikey",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "https://messenger.stipop.io/v1/analytics/send/:stickerId?userId=1&lang=en&countryCode=SG",
+									"protocol": "https",
+									"host": [
+										"messenger",
+										"stipop",
+										"io"
+									],
+									"path": [
+										"v1",
+										"analytics",
+										"send",
+										":stickerId"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "1"
+										},
+										{
+											"key": "q",
+											"value": "funny",
+											"disabled": true
+										},
+										{
+											"key": "lang",
+											"value": "en"
+										},
+										{
+											"key": "countryCode",
+											"value": "SG"
+										}
+									],
+									"variable": [
+										{
+											"key": "stickerId",
+											"value": "9937"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Recently Sent Stickers",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "eb8b7094d3085ee7d6ff7a4962d26461",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "apikey",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://messenger.stipop.io/v1/package/send/:userId?limit=50&pageNumber=10",
+									"protocol": "https",
+									"host": [
+										"messenger",
+										"stipop",
+										"io"
+									],
+									"path": [
+										"v1",
+										"package",
+										"send",
+										":userId"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "50"
+										},
+										{
+											"key": "pageNumber",
+											"value": "10"
+										}
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Frequently Sent Stickers",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "eb8b7094d3085ee7d6ff7a4962d26461",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "apikey",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://messenger.stipop.io/v1/package/frequently/:userId?limit=50&pageNumber=10",
+									"protocol": "https",
+									"host": [
+										"messenger",
+										"stipop",
+										"io"
+									],
+									"path": [
+										"v1",
+										"package",
+										"frequently",
+										":userId"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "50"
+										},
+										{
+											"key": "pageNumber",
+											"value": "10"
+										}
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "My Stickers",
+					"item": [
+						{
+							"name": "My Sticker Packs",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "eb8b7094d3085ee7d6ff7a4962d26461",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "apikey",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://messenger.stipop.io/v1/mysticker/:userId?limit=50&pageNumber=10",
+									"protocol": "https",
+									"host": [
+										"messenger",
+										"stipop",
+										"io"
+									],
+									"path": [
+										"v1",
+										"mysticker",
+										":userId"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "50"
+										},
+										{
+											"key": "pageNumber",
+											"value": "10"
+										}
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Hide/Recover My Sticker Packs",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "eb8b7094d3085ee7d6ff7a4962d26461",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "apikey",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "https://messenger.stipop.io/v1/mysticker/hide/:userId/:packageId",
+									"protocol": "https",
+									"host": [
+										"messenger",
+										"stipop",
+										"io"
+									],
+									"path": [
+										"v1",
+										"mysticker",
+										"hide",
+										":userId",
+										":packageId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "1"
+										},
+										{
+											"key": "packageId",
+											"value": "118"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Hidden Sticker Packs",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "eb8b7094d3085ee7d6ff7a4962d26461",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "apikey",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://messenger.stipop.io/v1/mysticker/hide/:userId?limit=50&pageNumber=10",
+									"protocol": "https",
+									"host": [
+										"messenger",
+										"stipop",
+										"io"
+									],
+									"path": [
+										"v1",
+										"mysticker",
+										"hide",
+										":userId"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "50"
+										},
+										{
+											"key": "pageNumber",
+											"value": "10"
+										}
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "My Wishlist",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "eb8b7094d3085ee7d6ff7a4962d26461",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "apikey",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://messenger.stipop.io/v1/wish/:userId",
+									"protocol": "https",
+									"host": [
+										"messenger",
+										"stipop",
+										"io"
+									],
+									"path": [
+										"v1",
+										"wish",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add/Remove Wishlist",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "eb8b7094d3085ee7d6ff7a4962d26461",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "apikey",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "https://messenger.stipop.io/v1/wish/:packageId?userId=1",
+									"protocol": "https",
+									"host": [
+										"messenger",
+										"stipop",
+										"io"
+									],
+									"path": [
+										"v1",
+										"wish",
+										":packageId"
+									],
+									"query": [
+										{
+											"key": "userId",
+											"value": "1"
+										}
+									],
+									"variable": [
+										{
+											"key": "packageId",
+											"value": "118"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Download/Purchase History",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "eb8b7094d3085ee7d6ff7a4962d26461",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "apikey",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://messenger.stipop.io/v1/download/:userId?limit=50&pageNumber=10",
+									"protocol": "https",
+									"host": [
+										"messenger",
+										"stipop",
+										"io"
+									],
+									"path": [
+										"v1",
+										"download",
+										":userId"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "50"
+										},
+										{
+											"key": "pageNumber",
+											"value": "10"
+										}
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "1",
+											"description": "Unique value for every user to distinguish unique users.\nThe userId can be in any string format.\nImportant: Using same userId for multiple users is not allowed."
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "My Sticker Order",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "eb8b7094d3085ee7d6ff7a4962d26461",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "apikey",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "currentOrder",
+											"value": "2",
+											"type": "default"
+										},
+										{
+											"key": "newOrder",
+											"value": "1",
+											"type": "default"
+										}
+									]
+								},
+								"url": {
+									"raw": "https://messenger.stipop.io/v1/mysticker/order/:userId",
+									"protocol": "https",
+									"host": [
+										"messenger",
+										"stipop",
+										"io"
+									],
+									"path": [
+										"v1",
+										"mysticker",
+										"order",
+										":userId"
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Sticker Gift",
+					"item": [
+						{
+							"name": "Send Dift Sticker Pack",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "eb8b7094d3085ee7d6ff7a4962d26461",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "apikey",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "https://messenger.stipop.io/v1/gift/:packageId/:sendUserId/:receiveUserId",
+									"protocol": "https",
+									"host": [
+										"messenger",
+										"stipop",
+										"io"
+									],
+									"path": [
+										"v1",
+										"gift",
+										":packageId",
+										":sendUserId",
+										":receiveUserId"
+									],
+									"variable": [
+										{
+											"key": "packageId",
+											"value": "118"
+										},
+										{
+											"key": "sendUserId",
+											"value": "1"
+										},
+										{
+											"key": "receiveUserId",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Confirm Gift Pack",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": null
+							},
+							"response": []
+						},
+						{
+							"name": "Sent Gift Packs",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": null
+							},
+							"response": []
+						},
+						{
+							"name": "Received Gift Packs",
+							"request": {
+								"auth": {
+									"type": "apikey",
+									"apikey": [
+										{
+											"key": "value",
+											"value": "eb8b7094d3085ee7d6ff7a4962d26461",
+											"type": "string"
+										},
+										{
+											"key": "key",
+											"value": "apikey",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://messenger.stipop.io/v1/gift/receive/:userId?limit=50&pageNumber=10",
+									"protocol": "https",
+									"host": [
+										"messenger",
+										"stipop",
+										"io"
+									],
+									"path": [
+										"v1",
+										"gift",
+										"receive",
+										":userId"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "50"
+										},
+										{
+											"key": "pageNumber",
+											"value": "10"
+										}
+									],
+									"variable": [
+										{
+											"key": "userId",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "API Proxy",
+			"item": [
+				{
+					"name": "Search Trending Stickers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/sticker/search/:userId/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"sticker",
+								"search",
+								":userId",
+								""
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Stickers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/sticker/search/1/funny",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"sticker",
+								"search",
+								"1",
+								"funny"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
