@@ -6,7 +6,6 @@ const searchRouter = express.Router();
 // Example URL: /sticker/search/1
 searchRouter.get('/:userId', async(req, res) => {
     try {
-        // const obj = [];
         const obj = {};
         const { userId } = req.params;
         const keywords = await searchTrending(userId);
