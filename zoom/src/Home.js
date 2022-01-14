@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Input, Button, IconButton } from "@material-ui/core";
-import GitHubIcon from "@material-ui/icons/GitHub";
+import { Input, Button } from "@material-ui/core";
 import "./Home.css";
 
 class Home extends Component {
@@ -41,7 +40,7 @@ class Home extends Component {
             height: "auto",
             padding: "20px",
             minWidth: "400px",
-            textAlign: "center"
+            textAlign: "center",
           }}
         >
           <p style={{ margin: 0, fontWeight: "bold", paddingRight: "50px" }}>

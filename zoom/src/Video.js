@@ -338,8 +338,8 @@ class Video extends Component {
       videos[a].style.minWidth = minWidth;
       videos[a].style.minHeight = minHeight;
       videos[a].style.setProperty("width", width);
-      videos[a].style.setProperty("height", height);
-      videos[a].style.aspectRatio = "16/9"
+      // videos[a].style.setProperty("height", height);
+      videos[a].style.aspectRatio = "16/9";
     }
 
     return { minWidth, minHeight, width, height };
@@ -411,7 +411,7 @@ class Video extends Component {
               for (let i in css) video.style[i] = css[i];
 
               video.style.setProperty("width", cssMesure.width);
-              video.style.setProperty("height", cssMesure.height);
+              // video.style.setProperty("height", cssMesure.height);
               video.setAttribute("data-socket", socketListId);
               video.srcObject = event.stream;
               video.autoplay = true;
@@ -507,8 +507,10 @@ class Video extends Component {
   handleUsername = (e) => this.setState({ username: e.target.value });
 
   sendMessage = () => {
-    socket.emit("chat-message", this.state.message, this.state.username);
-    this.setState({ message: "", sender: this.state.username });
+    if (this.state.message.length > 0) {
+      socket.emit("chat-message", this.state.message, this.state.username);
+      this.setState({ message: "", sender: this.state.username });
+    }
   };
 
   copyUrl = () => {
@@ -575,7 +577,7 @@ class Video extends Component {
     return (
       <div>
         {this.state.askForUsername === true ? (
-          <div>
+          <div style={{overflow:"hidden"}}>
             <div
               style={{
                 background: "white",
@@ -585,7 +587,7 @@ class Video extends Component {
                 minWidth: "400px",
                 textAlign: "center",
                 margin: "auto",
-                marginTop: "50px",
+                marginTop: "20px",
                 justifyContent: "center",
               }}
             >
@@ -613,7 +615,7 @@ class Video extends Component {
               style={{
                 justifyContent: "center",
                 textAlign: "center",
-                paddingTop: "40px",
+                paddingTop: "20px",
               }}
             >
               <video
@@ -734,7 +736,8 @@ class Video extends Component {
                   onClick={this.sendMessage}
                 >
                   Send
-                </Button>
+                  </Button>
+                  <Button>hi</Button>
               </Modal.Footer>
             </Modal>
 
