@@ -577,7 +577,7 @@ class Video extends Component {
     return (
       <div>
         {this.state.askForUsername === true ? (
-          <div style={{overflow:"hidden"}}>
+          <div style={{ overflow: "hidden" }}>
             <div
               style={{
                 background: "white",
@@ -730,14 +730,22 @@ class Video extends Component {
                   value={this.state.message}
                   onChange={(e) => this.handleMessage(e)}
                 />
+                <button
+                  style={{
+                    background: "transparent",
+                      border: "none",
+                      marginRight: "10px"
+                  }}
+                >
+                  hi
+                </button>
                 <Button
                   variant="contained"
                   color="primary"
                   onClick={this.sendMessage}
                 >
                   Send
-                  </Button>
-                  <Button>hi</Button>
+                </Button>
               </Modal.Footer>
             </Modal>
 
