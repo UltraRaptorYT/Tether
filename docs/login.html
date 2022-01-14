@@ -32,15 +32,13 @@
 
     <script>
       $(document).ready(function () {  
-        console.log('wooo')
           $("#Login").click(function () {  
-            console.log('pe')
              var id=$('#email').val();
              var pwd=$('#password').val();
              var data = "{\"email\":\""+id+"\", \"password\":\""+pwd+"\"}";
              $.ajax({                                                               
-                  // url: 'http://localhost:5502/login.html' ,  
-                  type: 'PUT', 
+                  //  url: 'http://localhost:5502/login.html' ,  
+                  type: 'POST', 
                   data: data,
                   contentType: "application/json; charset=utf-8",
                   dataType: "json",  
