@@ -16,7 +16,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.options("*", cors());
-app.use(cors());
+app.use(cors({ origin: "*" }));
 
 app.post("/user/login", function (req, res) {
   var email = req.body.email;
