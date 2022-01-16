@@ -435,6 +435,7 @@ class Video extends Component {
           if (window.localStream !== undefined && window.localStream !== null) {
             connections[socketListId].addStream(window.localStream);
           } else {
+            // Change to user
             let blackSilence = (...args) =>
               new MediaStream([this.black(...args), this.silence()]);
             window.localStream = blackSilence();
@@ -477,6 +478,7 @@ class Video extends Component {
     return Object.assign(dst.stream.getAudioTracks()[0], { enabled: false });
   };
   black = ({ width = 640, height = 480 } = {}) => {
+    //! heher
     let canvas = Object.assign(document.createElement("canvas"), {
       width,
       height,
@@ -561,8 +563,8 @@ class Video extends Component {
   sendMessage = () => {
     if (this.state.message.length > 0) {
       socket.emit("chat-message", this.state.message, this.state.username);
-      console.log(this.state.message);
       this.setState({ message: "", sender: this.state.username });
+      console.log(this.state.message);
     }
   };
 
