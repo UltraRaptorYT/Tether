@@ -32,12 +32,16 @@ outline: none;
 padding: 10px 20px;
 border-radius: 35px;
 border: 1px solid rgba(255, 255, 255, 0.5);
-border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-border-top: 1px solid rgba(255, 255, 255, 0.2);
 color: whitesmoke;
 box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 input::placeholder {
   color: whitesmoke;
+}
+
+.center {
+margin: auto;
+width: 60%;
+padding: 10px;
 }

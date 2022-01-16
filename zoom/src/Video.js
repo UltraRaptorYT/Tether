@@ -12,6 +12,7 @@ import StopScreenShareIcon from "@material-ui/icons/StopScreenShare";
 import CallEndIcon from "@material-ui/icons/CallEnd";
 import ChatIcon from "@material-ui/icons/Chat";
 import AddReactionIcon from "@mui/icons-material/AddReaction";
+import SearchIcon from "@mui/icons-material/Search";
 
 import { message } from "antd";
 import "antd/dist/antd.css";
@@ -55,6 +56,8 @@ class Video extends Component {
       message: "",
       newmessages: 0,
       askForUsername: true,
+      reaction: false,
+      reactionSearch: "",
       username: faker.internet.userName(),
     };
     connections = {};
@@ -498,7 +501,7 @@ class Video extends Component {
   openChat = () => this.setState({ showModal: true, newmessages: 0 });
   closeChat = () => this.setState({ showModal: false });
   handleMessage = (e) => this.setState({ message: e.target.value });
-
+  handleSearch = (e) => this.setState({ reactionSearch: e.target.value });
   addMessage = (data, sender, socketIdSender) => {
     this.setState((prevState) => ({
       messages: [...prevState.messages, { sender: sender, data: data }],
@@ -510,10 +513,16 @@ class Video extends Component {
 
   handleUsername = (e) => this.setState({ username: e.target.value });
   addReaction = () => {
-    this.state.message = `<img src="https://media.discordapp.net/attachments/910885868733087747/927432549515538442/92172b31-e454-460b-a892-6ae0595b179f.png">`;
-    console.log(this.state.message, this.state.username);
+    this.state.reaction = !this.state.reaction;
+    if (this.state.reaction) {
+      document.getElementById("tooltip").classList.toggle("show");
+    }
+    // this.state.message = `<img src="https://media.discordapp.net/attachments/910885868733087747/927432549515538442/92172b31-e454-460b-a892-6ae0595b179f.png">`;
     socket.emit("chat-message", this.state.message, this.state.username);
-    this.setState({ message: "", sender: this.state.username });
+    // this.setState({ message: "", sender: this.state.username });
+  };
+  searchSticker = () => {
+    console.log(this.state.reactionSearch);
   };
   sendMessage = () => {
     if (this.state.message.length > 0) {
@@ -760,6 +769,19 @@ class Video extends Component {
                   value={this.state.message}
                   onChange={(e) => this.handleMessage(e)}
                 />
+                <div
+                  style={{
+                    display: "block",
+                    position: "relative",
+                    paddingLeft: "35px",
+                    marginBottom: "12px",
+                    cursor: "pointer",
+                    fontSize: "22px",
+                    userSelect: "none",
+                  }}
+                >
+                  <input type="checkbox" id="reaction12"></input>
+                </div>
                 <button
                   id="reaction"
                   style={{
@@ -769,6 +791,44 @@ class Video extends Component {
                   }}
                   onClick={this.addReaction}
                 >
+                  <div
+                    className="tooltip d-flex flex-column justify-content-center align-items-center"
+                    id="tooltip"
+                  >
+                    <h2>Stickers</h2>
+
+                    <div className="container">
+                      <div className="row">
+                        <div className="col-sm, text-whit">1 of 3</div>
+                        <div className="col-sm">1 of 3</div>
+                        <div className="col-sm">1 of 3</div>
+                      </div>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        width: "80%",
+                        padding: "2px",
+                      }}
+                    >
+                      <Input
+                        placeholder="Search Sticker"
+                        value={this.state.reactionSearch}
+                        onChange={(e) => this.handleSearch(e)}
+                      />
+                      <button
+                        style={{
+                          background: "transparent",
+                          border: "none",
+                        }}
+                        onClick={this.searchSticker}
+                      >
+                        <SearchIcon />
+                      </button>
+                    </div>
+                  </div>
                   <AddReactionIcon />
                 </button>
                 <Button

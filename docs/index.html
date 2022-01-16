@@ -19,25 +19,30 @@
     <!-- jQuery library -->
     <script
       src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
-      defer=""
+      defer
     ></script>
 
     <!-- Popper JS -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"
-      defer=""
+      defer
     ></script>
 
     <!-- Latest compiled JavaScript -->
     <script
       src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-      defer=""
+      defer
     ></script>
-
   </head>
   <body class="start-page">
     <nav class="navbar navbar-expand-lg navbar-dark bg-transparent px-4 py-2">
-      <a class="navbar-brand d-flex justify-content-center align-items-center" style="gap:10px" href="#"><img src="./img/Tether.png" width="60" /><p class="m-0">Tether</p></a>
+      <a
+        class="navbar-brand d-flex justify-content-center align-items-center"
+        style="gap: 10px"
+        href="#"
+        ><img src="./img/Tether.png" width="60" />
+        <p class="m-0">Tether</p></a
+      >
       <button
         class="navbar-toggler"
         type="button"
@@ -82,17 +87,40 @@
       </div>
     </nav>
 
+    <div class="row d-flex align-items-center">
+      <img src="./img/Tether.png" />
+    </div>
+
     <div class="container-fluid w-100 h-100 d-flex align-items-center">
-      <div class="col-8" >
+      <div class="col-7 center">
+        <!-- link to localhost 8000 -->
+
         <h2>Premium video meetings for everyone</h2>
-        <input type = "button" class="border-primary" value="Start a new meeting">
-        <input type="number border-dark" placeholder="Enter a code or link" > 
+        <form action="http://localhost:8000/">
+          <input
+            type="submit"
+            class="border-primary p-3"
+            value="Connect to meeting"
+          />
+        </form>
+
+        <input type="number border-dark" placeholder="Enter a code or link" />
+        <!-- <a href="http://localhost:8000/" class="button">Video Call</a> -->
       </div>
 
-      <div class = "col-4">
-
+      <!-- link to notion page aka what he sent to the chat -->
+      <div class="col-5 center">
+        <h2>Enter Notion Page</h2>
+        <form
+          action="https://placid-desk-f42.notion.site/Calendar-0b7ef1bc3f71462b8ebd768b880765ba"
+        >
+          <input
+            type="submit"
+            class="border-primary"
+            value="Enter notion page"
+          />
+        </form>
       </div>
-
     </div>
   </body>
 </html>
