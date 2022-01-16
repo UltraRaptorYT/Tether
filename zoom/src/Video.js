@@ -11,6 +11,7 @@ import ScreenShareIcon from "@material-ui/icons/ScreenShare";
 import StopScreenShareIcon from "@material-ui/icons/StopScreenShare";
 import CallEndIcon from "@material-ui/icons/CallEnd";
 import ChatIcon from "@material-ui/icons/Chat";
+import AddReactionIcon from "@mui/icons-material/AddReaction";
 
 import { message } from "antd";
 import "antd/dist/antd.css";
@@ -203,19 +204,25 @@ class Video extends Component {
     );
   };
 
-  getDislayMedia = () => {
+  getDisplayMedia = () => {
     if (this.state.screen) {
       if (navigator.mediaDevices.getDisplayMedia) {
         navigator.mediaDevices
           .getDisplayMedia({ video: true, audio: true })
-          .then(this.getDislayMediaSuccess)
+          .then(this.getDisplayMediaSuccess)
           .then((stream) => {})
-          .catch((e) => console.log(e));
+          .catch((e) => {
+            this.state.screen = !this.state.screen;
+            console.log(e);
+          });
       }
+    }
+    else {
+      window.localStream.getTracks().forEach((track) => track.stop());
     }
   };
 
-  getDislayMediaSuccess = (stream) => {
+  getDisplayMediaSuccess = (stream) => {
     try {
       window.localStream.getTracks().forEach((track) => track.stop());
     } catch (e) {
@@ -481,7 +488,7 @@ class Video extends Component {
   handleAudio = () =>
     this.setState({ audio: !this.state.audio }, () => this.getUserMedia());
   handleScreen = () =>
-    this.setState({ screen: !this.state.screen }, () => this.getDislayMedia());
+    this.setState({ screen: !this.state.screen }, () => this.getDisplayMedia());
 
   handleEndCall = () => {
     try {
@@ -626,9 +633,9 @@ class Video extends Component {
                 style={{
                   borderStyle: "solid",
                   borderColor: "#bdbdbd",
-                  objectFit: "fill",
-                  width: "60%",
-                  "aspect-ratio": "16/9",
+                  objectFit: "cover",
+                  width: "50%",
+                  aspectRatio: "16/9",
                 }}
               ></video>
             </div>
@@ -733,11 +740,11 @@ class Video extends Component {
                 <button
                   style={{
                     background: "transparent",
-                      border: "none",
-                      marginRight: "10px"
+                    border: "none",
+                    marginRight: "10px",
                   }}
                 >
-                  hi
+                  <AddReactionIcon />
                 </button>
                 <Button
                   variant="contained"
@@ -781,6 +788,7 @@ class Video extends Component {
                     borderStyle: "solid",
                     borderColor: "#bdbdbd",
                     objectFit: "fill",
+                    width: "75%",
                     aspectRatio: "16/9",
                   }}
                 ></video>
