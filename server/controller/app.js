@@ -7,6 +7,27 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+
+
+app.post('/user/login',function(req, res){
+    var email=req.body.email;
+    var password = req.body.password;
+
+    user.loginUser(email, password, function(err, token, result){
+        if(!err){
+			res.statusCode = 200;
+			  res.setHeader('Content-Type', 'application/json');
+			  delete result[0]['password'];//clear the password in json data, do not send back to client
+			  console.log(result);
+			res.json({success: true, UserData: JSON.stringify(result), token:token, status: 'You are successfully logged in!'}); 
+			res.send();
+		}else{
+            res.status(500);
+            res.json({message:err.statusCode});
+        }
+    }); 
+}); 
+
 // will need to add auth middleware later
 app.use('/sticker/search', searchRouter);
 
