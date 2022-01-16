@@ -515,21 +515,13 @@ class Video extends Component {
   };
 
   handleUsername = (e) => this.setState({ username: e.target.value });
+  updateCount = () => {};
   showReaction = () => {
     $("#tooltip").toggleClass("show");
-    var itemArr = document.getElementsByClassName("carousel-item");
-    console.log(
-      itemArr.map((element, index) => {
-        if (element.classList.includes("active")) {
-          return index;
-        }
-      })
-    );
-    console.log();
-    // console.log($(".carousel").carousel());
-    // $("carouselNum").html() = ;
-    // $(".carousel").carousel(number);
-    // carouselNum
+
+    var itemArr = $(".carousel-item");
+    var currentItemIndex = itemArr.filter("active").index(".carousel-item");
+    $("#carouselNum").html(`${currentItemIndex + 1} / ${itemArr.length}`);
     axios
       .get("http://localhost:4000/sticker/search/1/")
       .then((response) => {
