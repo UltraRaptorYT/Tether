@@ -28,7 +28,7 @@ const axios = require("axios");
 const server_url =
   process.env.NODE_ENV === "production"
     ? "https://video.sebastienbiollo.com"
-    : "http://localhost:8000";
+    : "http://localhost:4001";
 
 var connections = {};
 const peerConnectionConfig = {
