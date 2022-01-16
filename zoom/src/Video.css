@@ -38,17 +38,16 @@ body {
   height: auto;
 }
 
-#reaction {
+#reaction-icon {
   color: #a9a9a9;
-  position: relative;
 }
 
-#reaction:hover,
-.react-clicked {
+#checkboxDiv:hover input ~ #reaction-icon,
+#checkboxDiv input:checked ~ #reaction-icon {
   color: #404040;
 }
 
-#reaction .tooltip {
+.tooltip {
   visibility: hidden;
   width: 160px;
   background-color: #555;
@@ -57,14 +56,14 @@ body {
   border-radius: 6px;
   padding: 8px 0;
   position: absolute;
-  z-index: 1;
+  z-index: 9999999;
   bottom: 125%;
   left: 50%;
   margin-left: -80px;
 }
 
 /* Toggle this class when clicking on the popup container (hide and show the popup) */
-#reaction .show {
+.show {
   visibility: visible;
   -webkit-animation: fadeIn 1s;
   animation: fadeIn 1s;

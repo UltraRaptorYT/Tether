@@ -22,10 +22,13 @@ import Modal from "react-bootstrap/Modal";
 import "bootstrap/dist/css/bootstrap.css";
 import "./Video.css";
 
+import $ from "jquery";
+
+const axios = require("axios");
 const server_url =
   process.env.NODE_ENV === "production"
     ? "https://video.sebastienbiollo.com"
-    : "http://localhost:4001";
+    : "http://localhost:8000";
 
 var connections = {};
 const peerConnectionConfig = {
@@ -512,13 +515,19 @@ class Video extends Component {
   };
 
   handleUsername = (e) => this.setState({ username: e.target.value });
-  addReaction = () => {
-    this.state.reaction = !this.state.reaction;
-    if (this.state.reaction) {
-      document.getElementById("tooltip").classList.toggle("show");
-    }
+  showReaction = () => {
+    $("#tooltip").toggleClass("show");
+    axios
+      .get("localhost:4000/sticker/search/1/")
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    return false;
     // this.state.message = `<img src="https://media.discordapp.net/attachments/910885868733087747/927432549515538442/92172b31-e454-460b-a892-6ae0595b179f.png">`;
-    socket.emit("chat-message", this.state.message, this.state.username);
+    // socket.emit("chat-message", this.state.message, this.state.username);
     // this.setState({ message: "", sender: this.state.username });
   };
   searchSticker = () => {
@@ -769,41 +778,128 @@ class Video extends Component {
                   value={this.state.message}
                   onChange={(e) => this.handleMessage(e)}
                 />
-                <div
+                <label
+                  id="checkboxDiv"
                   style={{
                     display: "block",
                     position: "relative",
-                    paddingLeft: "35px",
-                    marginBottom: "12px",
+                    width: "25px",
+                    aspectRatio: "1",
                     cursor: "pointer",
-                    fontSize: "22px",
                     userSelect: "none",
-                  }}
-                >
-                  <input type="checkbox" id="reaction12"></input>
-                </div>
-                <button
-                  id="reaction"
-                  style={{
-                    background: "transparent",
-                    border: "none",
+                    msUserSelect: "none",
+                    MozUserSelect: "none",
+                    WebkitUserSelect: "none",
                     marginRight: "10px",
                   }}
-                  onClick={this.addReaction}
                 >
+                  <input
+                    id="reactionCheck"
+                    type="checkbox"
+                    style={{
+                      position: "absolute",
+                      opacity: "0",
+                      cursor: "pointer",
+                      height: "0px",
+                      width: "0px",
+                    }}
+                    onChange={this.showReaction}
+                  ></input>
                   <div
                     className="tooltip d-flex flex-column justify-content-center align-items-center"
                     id="tooltip"
                   >
-                    <h2>Stickers</h2>
-
-                    <div className="container">
-                      <div className="row">
-                        <div className="col-sm, text-whit">1 of 3</div>
-                        <div className="col-sm">1 of 3</div>
-                        <div className="col-sm">1 of 3</div>
+                    <div
+                      id="carouselExampleIndicators"
+                      className="carousel"
+                      data-ride="carousel"
+                    >
+                      <ol className="carousel-indicators">
+                        <li
+                          data-target="#carouselExampleIndicators"
+                          data-slide-to="0"
+                          className=""
+                        ></li>
+                        <li
+                          data-target="#carouselExampleIndicators"
+                          data-slide-to="1"
+                          className="active"
+                        ></li>
+                        <li
+                          data-target="#carouselExampleIndicators"
+                          data-slide-to="2"
+                          className=""
+                        ></li>
+                      </ol>
+                      <div className="carousel-inner">
+                        <div className="carousel-item row">
+                          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT9i-t0o_ltZf_c5ZQ4F4kbuETdhNDdxsjIYKaofkjTM3BmHTqc" />
+                          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT9i-t0o_ltZf_c5ZQ4F4kbuETdhNDdxsjIYKaofkjTM3BmHTqc" />
+                          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT9i-t0o_ltZf_c5ZQ4F4kbuETdhNDdxsjIYKaofkjTM3BmHTqc" />
+                        </div>
+                        <div className="carousel-item active">
+                          <svg
+                            className="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
+                            width="800"
+                            height="400"
+                            xmlns="http://www.w3.org/2000/svg"
+                            preserveAspectRatio="xMidYMid slice"
+                            focusable="false"
+                            role="img"
+                            aria-label="Placeholder: Second slide"
+                          >
+                            <title>Placeholder</title>
+                            <rect width="100%" height="100%" fill="#666"></rect>
+                            <text x="50%" y="50%" fill="#444" dy=".3em">
+                              Second slide
+                            </text>
+                          </svg>
+                        </div>
+                        <div className="carousel-item">
+                          <svg
+                            className="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
+                            width="800"
+                            height="400"
+                            xmlns="http://www.w3.org/2000/svg"
+                            preserveAspectRatio="xMidYMid slice"
+                            focusable="false"
+                            role="img"
+                            aria-label="Placeholder: Third slide"
+                          >
+                            <title>Placeholder</title>
+                            <rect width="100%" height="100%" fill="#555"></rect>
+                            <text x="50%" y="50%" fill="#333" dy=".3em">
+                              Third slide
+                            </text>
+                          </svg>
+                        </div>
                       </div>
+                      <a
+                        className="carousel-control-prev"
+                        href="#carouselExampleIndicators"
+                        role="button"
+                        data-slide="prev"
+                      >
+                        <span
+                          className="carousel-control-prev-icon"
+                          aria-hidden="true"
+                        ></span>
+                        <span className="sr-only">Previous</span>
+                      </a>
+                      <a
+                        className="carousel-control-next"
+                        href="#carouselExampleIndicators"
+                        role="button"
+                        data-slide="next"
+                      >
+                        <span
+                          className="carousel-control-next-icon"
+                          aria-hidden="true"
+                        ></span>
+                        <span className="sr-only">Next</span>
+                      </a>
                     </div>
+
                     <div
                       style={{
                         display: "flex",
@@ -829,8 +925,17 @@ class Video extends Component {
                       </button>
                     </div>
                   </div>
-                  <AddReactionIcon />
-                </button>
+                  <AddReactionIcon
+                    id="reaction-icon"
+                    style={{
+                      position: "absolute",
+                      top: "0",
+                      left: "0",
+                      height: "25px",
+                      width: "25px",
+                    }}
+                  />
+                </label>
                 <Button
                   variant="contained"
                   color="primary"
