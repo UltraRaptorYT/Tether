@@ -1,21 +1,22 @@
 import express from "express";
 import { searchRouter } from "./routes/stickerSearch.js";
 import { authenticateToken } from "../auth/authorizeToken.js";
+import cors from "cors"
+// var cors = require("cors");
 
 const app = express();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-var cors = require("cors");
 
-const corsOptions = {
-  origin: "http://localhost:8000/123",
-  credentials: true, //access-control-allow-credentials:true
-  optionSuccessStatus: 200,
-};
-app.use(cors(corsOptions));
+// const corsOptions = {
+//   origin: "http://localhost:8000/123",
+//   credentials: true, //access-control-allow-credentials:true
+//   optionSuccessStatus: 200,
+// };
+// app.use(cors(corsOptions));
 
-app.options("*", cors());
+// app.options("*", cors());
 app.use(cors({ origin: "*" }));
 
 app.post("/user/login", function (req, res) {
