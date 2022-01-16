@@ -28,7 +28,7 @@ const axios = require("axios");
 const server_url =
   process.env.NODE_ENV === "production"
     ? "https://video.sebastienbiollo.com"
-    : "http://localhost:8000";
+    : "http://localhost:4001";
 
 var connections = {};
 const peerConnectionConfig = {
@@ -435,6 +435,7 @@ class Video extends Component {
           if (window.localStream !== undefined && window.localStream !== null) {
             connections[socketListId].addStream(window.localStream);
           } else {
+            // Change to user
             let blackSilence = (...args) =>
               new MediaStream([this.black(...args), this.silence()]);
             window.localStream = blackSilence();
@@ -477,6 +478,7 @@ class Video extends Component {
     return Object.assign(dst.stream.getAudioTracks()[0], { enabled: false });
   };
   black = ({ width = 640, height = 480 } = {}) => {
+    //! heher
     let canvas = Object.assign(document.createElement("canvas"), {
       width,
       height,
@@ -515,25 +517,43 @@ class Video extends Component {
   };
 
   handleUsername = (e) => this.setState({ username: e.target.value });
-  updateCount = () => {};
+  updateCarousel = () => {
+    var itemArr = $(".carousel-item");
+    for (var i in itemArr) {
+      console.log(itemArr[i]);
+      if (itemArr[i].classList.contains("active")) {
+        break;
+      }
+    }
+    console.log(i);
+    document.getElementById("carouselNum").innerHTML = `${parseInt(i) + 1} / ${
+      itemArr.length
+    }`;
+  };
   showReaction = () => {
     $("#tooltip").toggleClass("show");
-
-    var itemArr = $(".carousel-item");
-    var currentItemIndex = itemArr.filter("active").index(".carousel-item");
-    $("#carouselNum").html(`${currentItemIndex + 1} / ${itemArr.length}`);
     axios
       .get("http://localhost:4000/sticker/search/1/")
       .then((response) => {
         console.log(response.data);
-
+        console.log("woooo");
+        console.log(response.data.love);
+        console.log("Get image url");
+        console.log(response.data.love[0].image);
+        window.urlss = response.data.love[5].image;
+        console.log(window.urlss);
+        // https://img.stipop.io/2020/9/14/1600154546216_15.gif
         // Here
       })
       .catch((error) => {
         console.log(error);
       });
+    this.updateCarousel();
     return false;
-    // this.state.message = `<img src="${url}https://media.discordapp.net/attachments/910885868733087747/927432549515538442/92172b31-e454-460b-a892-6ae0595b179f.png">`;
+    console.log("wutututu");
+    console.log(window.urlss);
+
+    // this.state.message = `<img src="${window.urlss}https://media.discordapp.net/attachments/910885868733087747/927432549515538442/92172b31-e454-460b-a892-6ae0595b179f.png">`;
     // socket.emit("chat-message", this.state.message, this.state.username);
   };
   searchSticker = () => {
@@ -544,6 +564,7 @@ class Video extends Component {
     if (this.state.message.length > 0) {
       socket.emit("chat-message", this.state.message, this.state.username);
       this.setState({ message: "", sender: this.state.username });
+      console.log(this.state.message);
     }
   };
 
@@ -822,9 +843,10 @@ class Video extends Component {
                       data-interval="false"
                       data-ride="carousel"
                     >
-                      <div className="carousel-indicators" id="carouselNum">
-                        hi
-                      </div>
+                      <div
+                        className="carousel-indicators"
+                        id="carouselNum"
+                      ></div>
                       <div className="carousel-inner">
                         <div className="carousel-item row active">
                           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT9i-t0o_ltZf_c5ZQ4F4kbuETdhNDdxsjIYKaofkjTM3BmHTqc" />
@@ -873,6 +895,7 @@ class Video extends Component {
                         href="#carouselExampleIndicators"
                         role="button"
                         data-slide="prev"
+                        onClick={this.updateCarousel}
                       >
                         <span
                           className="carousel-control-prev-icon"
@@ -885,6 +908,7 @@ class Video extends Component {
                         href="#carouselExampleIndicators"
                         role="button"
                         data-slide="next"
+                        onClick={this.updateCarousel}
                       >
                         <span
                           className="carousel-control-next-icon"
