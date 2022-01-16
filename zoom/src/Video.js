@@ -36,7 +36,6 @@ const peerConnectionConfig = {
 var socket = null;
 var socketId = null;
 var elms = 0;
-
 class Video extends Component {
   constructor(props) {
     super(props);
@@ -216,8 +215,7 @@ class Video extends Component {
             console.log(e);
           });
       }
-    }
-    else {
+    } else {
       window.localStream.getTracks().forEach((track) => track.stop());
     }
   };
@@ -368,7 +366,6 @@ class Video extends Component {
         if (video !== null) {
           elms--;
           video.parentNode.removeChild(video);
-
           let main = document.getElementById("main");
           this.changeCssVideos(main);
         }
@@ -512,7 +509,12 @@ class Video extends Component {
   };
 
   handleUsername = (e) => this.setState({ username: e.target.value });
-
+  addReaction = () => {
+    this.state.message = `<img src="https://media.discordapp.net/attachments/910885868733087747/927432549515538442/92172b31-e454-460b-a892-6ae0595b179f.png">`;
+    console.log(this.state.message, this.state.username);
+    socket.emit("chat-message", this.state.message, this.state.username);
+    this.setState({ message: "", sender: this.state.username });
+  };
   sendMessage = () => {
     if (this.state.message.length > 0) {
       socket.emit("chat-message", this.state.message, this.state.username);
@@ -721,10 +723,31 @@ class Video extends Component {
               >
                 {this.state.messages.length > 0 ? (
                   this.state.messages.map((item, index) => (
-                    <div key={index} style={{ textAlign: "left" }}>
-                      <p style={{ wordBreak: "break-all" }}>
-                        <b>{item.sender}</b>: {item.data}
+                    <div
+                      key={index}
+                      style={{
+                        textAlign: "left",
+                        display: "flex",
+                        marginBottom: "5px",
+                      }}
+                    >
+                      <p className="m-0" style={{ wordBreak: "keep-all" }}>
+                        <b>{item.sender}</b>:&nbsp;
                       </p>
+                      {item.data.includes("<img ") ? (
+                        <img
+                          src={item.data.split('src="')[1].split('"')[0]}
+                          style={{
+                            width: "30%",
+                          }}
+                        />
+                      ) : item.data.includes("http") ? (
+                        <a href={item.data} target="_blank">
+                          {item.data}
+                        </a>
+                      ) : (
+                        item.data
+                      )}
                     </div>
                   ))
                 ) : (
@@ -738,11 +761,13 @@ class Video extends Component {
                   onChange={(e) => this.handleMessage(e)}
                 />
                 <button
+                  id="reaction"
                   style={{
                     background: "transparent",
                     border: "none",
                     marginRight: "10px",
                   }}
+                  onClick={this.addReaction}
                 >
                   <AddReactionIcon />
                 </button>

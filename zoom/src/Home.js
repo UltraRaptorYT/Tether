@@ -26,7 +26,7 @@ class Home extends Component {
     return (
       <div className="container2">
         <div>
-          <h1 style={{ fontSize: "45px" }}>Video Meeting</h1>
+          <h1 style={{ fontSize: "45px" }}>Tether</h1>
           <p style={{ fontWeight: "200" }}>
             Video conference website that lets you stay in touch with all your
             friends.
@@ -46,14 +46,14 @@ class Home extends Component {
           <p style={{ margin: 0, fontWeight: "bold", paddingRight: "50px" }}>
             Start or join a meeting
           </p>
-          <Input placeholder="URL" onChange={(e) => this.handleChange(e)} />
+          <Input placeholder="Enter a code or link" onChange={(e) => this.handleChange(e)} />
           <Button
             variant="contained"
             color="primary"
             onClick={this.join}
             style={{ margin: "20px" }}
           >
-            Go
+            Join Meeting
           </Button>
         </div>
       </div>
