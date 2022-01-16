@@ -58,8 +58,7 @@ body {
   position: absolute;
   z-index: 9999999;
   bottom: 125%;
-  left: 50%;
-  margin-left: -80px;
+  left: -550%;
 }
 
 /* Toggle this class when clicking on the popup container (hide and show the popup) */

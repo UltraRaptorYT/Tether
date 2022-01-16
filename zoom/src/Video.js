@@ -62,6 +62,8 @@ class Video extends Component {
       reaction: false,
       reactionSearch: "",
       username: faker.internet.userName(),
+      stickerArr: [],
+      page: 1,
     };
     connections = {};
 
@@ -520,12 +522,12 @@ class Video extends Component {
   updateCarousel = () => {
     var itemArr = $(".carousel-item");
     for (var i in itemArr) {
-      console.log(itemArr[i]);
       if (itemArr[i].classList.contains("active")) {
         break;
       }
     }
     console.log(i);
+    this.state.page = parseInt(i) + 1;
     document.getElementById("carouselNum").innerHTML = `${parseInt(i) + 1} / ${
       itemArr.length
     }`;
@@ -533,7 +535,7 @@ class Video extends Component {
   showReaction = () => {
     $("#tooltip").toggleClass("show");
     axios
-      .get("http://localhost:4000/sticker/search/1/")
+      .get(`http://localhost:4000/sticker/search/${this.state.page}/1/`)
       .then((response) => {
         console.log(response.data);
         console.log("woooo");
@@ -548,7 +550,6 @@ class Video extends Component {
       .catch((error) => {
         console.log(error);
       });
-    this.updateCarousel();
     return false;
     console.log("wutututu");
     console.log(window.urlss);
@@ -558,7 +559,16 @@ class Video extends Component {
   };
   searchSticker = () => {
     if (this.state.reactionSearch.length > 0)
-      console.log(this.state.reactionSearch);
+      axios
+        .get(
+          `http://localhost:4000/sticker/search/${this.state.page}/1/${this.state.reactionSearch}`
+        )
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
   };
   sendMessage = () => {
     if (this.state.message.length > 0) {
@@ -838,6 +848,30 @@ class Video extends Component {
                     id="tooltip"
                   >
                     <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        width: "80%",
+                        padding: "2px",
+                      }}
+                    >
+                      <Input
+                        placeholder="Search Sticker"
+                        value={this.state.reactionSearch}
+                        onChange={(e) => this.handleSearch(e)}
+                      />
+                      <button
+                        style={{
+                          background: "transparent",
+                          border: "none",
+                        }}
+                        onClick={this.searchSticker}
+                      >
+                        <SearchIcon />
+                      </button>
+                    </div>
+                    <div
                       id="carouselExampleIndicators"
                       className="carousel slide"
                       data-interval="false"
@@ -848,46 +882,16 @@ class Video extends Component {
                         id="carouselNum"
                       ></div>
                       <div className="carousel-inner">
-                        <div className="carousel-item row active">
-                          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT9i-t0o_ltZf_c5ZQ4F4kbuETdhNDdxsjIYKaofkjTM3BmHTqc" />
-                          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT9i-t0o_ltZf_c5ZQ4F4kbuETdhNDdxsjIYKaofkjTM3BmHTqc" />
-                          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT9i-t0o_ltZf_c5ZQ4F4kbuETdhNDdxsjIYKaofkjTM3BmHTqc" />
-                        </div>
-                        <div className="carousel-item">
-                          <svg
-                            className="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
-                            width="800"
-                            height="400"
-                            xmlns="http://www.w3.org/2000/svg"
-                            preserveAspectRatio="xMidYMid slice"
-                            focusable="false"
-                            role="img"
-                            aria-label="Placeholder: Second slide"
-                          >
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#666"></rect>
-                            <text x="50%" y="50%" fill="#444" dy=".3em">
-                              Second slide
-                            </text>
-                          </svg>
-                        </div>
-                        <div className="carousel-item">
-                          <svg
-                            className="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
-                            width="800"
-                            height="400"
-                            xmlns="http://www.w3.org/2000/svg"
-                            preserveAspectRatio="xMidYMid slice"
-                            focusable="false"
-                            role="img"
-                            aria-label="Placeholder: Third slide"
-                          >
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#555"></rect>
-                            <text x="50%" y="50%" fill="#333" dy=".3em">
-                              Third slide
-                            </text>
-                          </svg>
+                        <div className="carousel-item row active justify-content-around align-items-center">
+                          <button className="col-4">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT9i-t0o_ltZf_c5ZQ4F4kbuETdhNDdxsjIYKaofkjTM3BmHTqc" />
+                          </button>
+                          <button className="col-4">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT9i-t0o_ltZf_c5ZQ4F4kbuETdhNDdxsjIYKaofkjTM3BmHTqc" />
+                          </button>
+                          <button className="col-4">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT9i-t0o_ltZf_c5ZQ4F4kbuETdhNDdxsjIYKaofkjTM3BmHTqc" />
+                          </button>
                         </div>
                       </div>
                       <a
@@ -916,31 +920,6 @@ class Video extends Component {
                         ></span>
                         <span className="sr-only">Next</span>
                       </a>
-                    </div>
-
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        width: "80%",
-                        padding: "2px",
-                      }}
-                    >
-                      <Input
-                        placeholder="Search Sticker"
-                        value={this.state.reactionSearch}
-                        onChange={(e) => this.handleSearch(e)}
-                      />
-                      <button
-                        style={{
-                          background: "transparent",
-                          border: "none",
-                        }}
-                        onClick={this.searchSticker}
-                      >
-                        <SearchIcon />
-                      </button>
                     </div>
                   </div>
                   <AddReactionIcon
