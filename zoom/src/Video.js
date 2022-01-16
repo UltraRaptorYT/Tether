@@ -515,23 +515,30 @@ class Video extends Component {
   };
 
   handleUsername = (e) => this.setState({ username: e.target.value });
+  updateCount = () => {};
   showReaction = () => {
     $("#tooltip").toggleClass("show");
+
+    var itemArr = $(".carousel-item");
+    var currentItemIndex = itemArr.filter("active").index(".carousel-item");
+    $("#carouselNum").html(`${currentItemIndex + 1} / ${itemArr.length}`);
     axios
-      .get("localhost:4000/sticker/search/1/")
+      .get("http://localhost:4000/sticker/search/1/")
       .then((response) => {
         console.log(response.data);
+
+        // Here
       })
       .catch((error) => {
         console.log(error);
       });
     return false;
-    // this.state.message = `<img src="https://media.discordapp.net/attachments/910885868733087747/927432549515538442/92172b31-e454-460b-a892-6ae0595b179f.png">`;
+    // this.state.message = `<img src="${url}https://media.discordapp.net/attachments/910885868733087747/927432549515538442/92172b31-e454-460b-a892-6ae0595b179f.png">`;
     // socket.emit("chat-message", this.state.message, this.state.username);
-    // this.setState({ message: "", sender: this.state.username });
   };
   searchSticker = () => {
-    console.log(this.state.reactionSearch);
+    if (this.state.reactionSearch.length > 0)
+      console.log(this.state.reactionSearch);
   };
   sendMessage = () => {
     if (this.state.message.length > 0) {
@@ -811,33 +818,20 @@ class Video extends Component {
                   >
                     <div
                       id="carouselExampleIndicators"
-                      className="carousel"
+                      className="carousel slide"
+                      data-interval="false"
                       data-ride="carousel"
                     >
-                      <ol className="carousel-indicators">
-                        <li
-                          data-target="#carouselExampleIndicators"
-                          data-slide-to="0"
-                          className=""
-                        ></li>
-                        <li
-                          data-target="#carouselExampleIndicators"
-                          data-slide-to="1"
-                          className="active"
-                        ></li>
-                        <li
-                          data-target="#carouselExampleIndicators"
-                          data-slide-to="2"
-                          className=""
-                        ></li>
-                      </ol>
+                      <div className="carousel-indicators" id="carouselNum">
+                        hi
+                      </div>
                       <div className="carousel-inner">
-                        <div className="carousel-item row">
+                        <div className="carousel-item row active">
                           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT9i-t0o_ltZf_c5ZQ4F4kbuETdhNDdxsjIYKaofkjTM3BmHTqc" />
                           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT9i-t0o_ltZf_c5ZQ4F4kbuETdhNDdxsjIYKaofkjTM3BmHTqc" />
                           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT9i-t0o_ltZf_c5ZQ4F4kbuETdhNDdxsjIYKaofkjTM3BmHTqc" />
                         </div>
-                        <div className="carousel-item active">
+                        <div className="carousel-item">
                           <svg
                             className="bd-placeholder-img bd-placeholder-img-lg d-block w-100"
                             width="800"
