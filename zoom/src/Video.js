@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import io from "socket.io-client";
 import faker from "faker";
+import ReactDOM from "react-dom";
 
 import {
   IconButton,
@@ -527,140 +528,142 @@ class Video extends Component {
 
   handleUsername = (e) => this.setState({ username: e.target.value });
   updateCarousel = () => {
-    var itemArr = $(".carousel-item");
-    console.log(itemArr);
-    for (var i = 0; i < itemArr.length; i++) {
-      if (itemArr[i].classList.contains("active")) {
-        this.state.currentPage = parseInt(i);
-        break;
-      }
-    }
-    console.log(i);
-    this.state.currentPage = parseInt(i) + 1;
-    setTimeout(
-      (document.getElementById("carouselNum").innerHTML = `${
-        parseInt(i) + 1
-      } / ${itemArr.length}`),
-      100
-    );
+    console.log("Hi");
   };
-  showReaction = () => {
+  noSearchReaction = () => {
     axios
       .get(`http://localhost:4000/sticker/search/${this.state.page}/1/`)
       .then((response) => {
-        if (
-          $("#carousel-inner").children().length == 0 ||
-          $("#carousel-inner").children()[0].tagName == "P"
-        ) {
-          $("#carousel-inner").html(
-            $("<div>", {
-              id: `${this.state.page}`,
-              class:
-                "carousel-item row active justify-content-around align-items-center m-0 p-3",
-            })
-          );
-        } else {
-          $("#carousel-inner").append(
-            $("<div>", {
-              id: `${this.state.page}`,
-              class:
-                "carousel-item row active justify-content-around align-items-center m-0 p-3",
-            })
-          );
-        }
+        var stickerArr = [];
         for (var j in response.data) {
           for (var i in response.data[j]) {
-            if (
-              $("#carousel-inner .carousel-item")
-                .eq(this.state.page - 1)
-                .children().length < 6
-            ) {
-              $("#carousel-inner .carousel-item")
-                .eq(this.state.page - 1)
-                .append(
-                  `<button style="background: none; width:33%; border: none;" class="sticker col-4 p-2" onclick="sendSticker()"><img src="${response.data[j][i].image}" style="width:100%"/></button>`
-                );
-            } else {
-              this.state.page += 1;
-              $("#carousel-inner").append(
-                $("<div>", {
-                  id: `${this.state.page}`,
-                  class:
-                    "carousel-item row justify-content-around align-items-center m-0 p-3",
-                })
-              );
-              $("#carousel-inner .carousel-item")
-                .eq(this.state.page)
-                .append(
-                  `<button style="background: none; width:33%; border: none;" class="sticker col-4 p-2" onClick="sendSticker()"><img src="${response.data[j][i].image}" style="width:100%"/></button>`
-                );
-            }
+            stickerArr.push(response.data[j][i].image);
           }
-          this.updateCarousel();
         }
-        // console.log(response.data);
-        // console.log("woooo");
-        // console.log(response.data.love);
-        // console.log("Get image url");
-        // console.log(response.data.love[0].image);
-        // window.urlss = response.data.love[5].image;
-        // console.log(window.urlss);
-        // https://img.stipop.io/2020/9/14/1600154546216_15.gif
-        // Here
+        var originalLength = stickerArr.length;
+        var stickerDict = {};
+        for (var page = 1; page <= Math.floor(originalLength / 6); page++) {
+          for (var i = 0, pageArr = []; i < 6; i++) {
+            pageArr[i] = stickerArr.shift();
+          }
+          stickerDict[page] = pageArr;
+        }
+        pageArr = [];
+        for (var j = 0; j < stickerArr.length; j++) {
+          pageArr[j] = stickerArr.shift();
+        }
+        stickerDict[page] = pageArr;
+        console.log(stickerDict);
+
+        ReactDOM.render(
+          <div
+            id={this.state.currentPage}
+            className="carousel-item row active justify-content-around align-items-center m-0 p-3"
+          >
+            {stickerDict[this.state.currentPage].map((element, index) => {
+              return (
+                <button
+                  key={index}
+                  className="sticker col-4 p-2"
+                  onClick={this.sendSticker}
+                >
+                  <img src={element} style={{ width: "100%" }} />
+                </button>
+              );
+            })}
+          </div>,
+          document.getElementById("carousel-inner")
+        );
       })
       .catch((error) => {
         console.log(error);
       });
+  };
+  showReaction = () => {
+    this.noSearchReaction();
     $("#tooltip").toggleClass("show");
     return false;
-    console.log("wutututu");
-    console.log(window.urlss);
-
-    // this.state.message = `<img src="${window.urlss}https://media.discordapp.net/attachments/910885868733087747/927432549515538442/92172b31-e454-460b-a892-6ae0595b179f.png">`;
-    // socket.emit("chat-message", this.state.message, this.state.username);
   };
-  sendSticker = () => {
-    console.log(this.sticker);
+  sendSticker = (event) => {
+    console.log(event.target.tagName);
+    if (event.target.tagName == "BUTTON") {
+      var imgElement = event.target.children[0];
+    } else if (event.target.tagName == "IMG") {
+      var imgElement = event.target;
+    } else {
+      return;
+    }
+    this.state.message = `<img src="${imgElement.src}"/>imgElement`;
+    socket.emit("chat-message", this.state.message, this.state.username);
+    this.setState({ message: "", sender: this.state.username });
+
+    // $(".sticker").addEventListener("click", () => {
+    //   console.log("Hi");
+    // });
   };
   searchSticker = () => {
     this.state.page = 1;
-    if (this.state.reactionSearch.length > 0)
+    if (this.state.reactionSearch.length > 0) {
       axios
         .get(
           `http://localhost:4000/sticker/search/${this.state.page}/1/${this.state.reactionSearch}`
         )
         .then((response) => {
           console.log(response.data);
-          $("#carousel-inner").html(
-            $("<div>", {
-              id: `${this.state.page}`,
-              class:
-                "carousel-item row active justify-content-around align-items-center m-0 p-3",
-            })
-          );
-          for (var i in response.data) {
-            console.log(response.data[i].image);
-            // if ($("#carousel-inner").children())
-
-            $("#carousel-inner .carousel-item")
-              .eq(this.state.page - 1)
-              .append(
-                `<button style="background: none; width:33%; border: none;" class="sticker col-4 p-2" onclick="sendSticker()"><img src="${response.data[i].image}" style="width:100%"/></button>`
-              );
+          var originalLength = response.data.length;
+          var stickerDict = {};
+          for (var page = 1; page <= Math.floor(originalLength / 6); page++) {
+            for (var i = 0, pageArr = []; i < 6; i++) {
+              pageArr[i] = response.data.shift();
+            }
+            stickerDict[page] = pageArr;
           }
+          ReactDOM.render(
+            <div
+              id={this.state.currentPage}
+              className="carousel-item row active justify-content-around align-items-center m-0 p-3"
+            >
+              {stickerDict[this.state.currentPage].map((element, index) => {
+                return (
+                  <button
+                    key={index}
+                    className="sticker col-4 p-2"
+                    onClick={this.sendSticker}
+                  >
+                    <img src={element.image} style={{ width: "100%" }} />
+                  </button>
+                );
+              })}
+            </div>,
+            document.getElementById("carousel-inner")
+          );
         })
         .catch((error) => {
           console.log(error);
-          $("#carousel-inner").html(
-            `<p style="display:flex; justify-content:center; align-items: center; height:208.875px;width:300px" class="p-3 m-0">No stickers in ${this.state.reactionSearch}</p>`
+          ReactDOM.render(
+            <p
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "208.875px",
+                width: "300px",
+              }}
+              className="p-3 m-0"
+            >
+              No stickers in {this.state.reactionSearch}
+            </p>,
+            document.getElementById("carousel-inner")
           );
         });
+    } else {
+      this.noSearchReaction();
+    }
   };
   sendMessage = () => {
     if (this.state.message.length > 0) {
       socket.emit("chat-message", this.state.message, this.state.username);
       this.setState({ message: "", sender: this.state.username });
-      console.log(this.state.message);
     }
   };
 
@@ -901,6 +904,12 @@ class Video extends Component {
                   placeholder="Message"
                   value={this.state.message}
                   onChange={(e) => this.handleMessage(e)}
+                  onKeyDown={(e) => {
+                    var keyCode = e.keyCode ? e.keyCode : e.which;
+                    if (keyCode == 13) {
+                      this.sendMessage();
+                    }
+                  }}
                 />
                 <label
                   id="checkboxDiv"
@@ -1023,7 +1032,6 @@ class Video extends Component {
                 </Button>
               </Modal.Footer>
             </Modal>
-
             <div className="container">
               <div style={{ paddingTop: "20px" }}>
                 <Input value={window.location.href} disable="true"></Input>

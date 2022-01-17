@@ -16,7 +16,7 @@ const searchTrending = async (userId) => {
 };
 
 const searchStickers = async (userId, query) => {
-  const searchStickerUrl = `https://messenger.stipop.io/v1/search?userId=${userId}&q=${query}&lang=en&pageNumber=1&limit=6`;
+  const searchStickerUrl = `https://messenger.stipop.io/v1/search?userId=${userId}&q=${query}&lang=en&pageNumber=1`;
   const response = await fetch(searchStickerUrl, {
     headers: { apikey: apikey },
   });

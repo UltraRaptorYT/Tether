@@ -14,7 +14,6 @@ searchRouter.get("/:pageNumber/:userId", async (req, res) => {
       const word = String(keywords[i]);
       obj[word] = await searchStickers(userId, word, pageNumber);
     }
-    res.set("Access-Control-Allow-Origin", "*");
     res.status(200).json(obj);
   } catch (err) {
     res.status(500).send(err);
@@ -27,7 +26,6 @@ searchRouter.get("/:pageNumber/:userId/:query", async (req, res) => {
   try {
     const { pageNumber, userId, query } = req.params;
     const stickers = await searchStickers(userId, query, pageNumber);
-    res.set("Access-Control-Allow-Origin", "*");
     res.status(200).json(stickers);
   } catch (err) {
     res.status(500).send(err);

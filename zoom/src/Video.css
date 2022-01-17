@@ -86,3 +86,9 @@ body {
     opacity: 1;
   }
 }
+
+.sticker {
+  background: none;
+  width: 33%;
+  border: none;
+}
