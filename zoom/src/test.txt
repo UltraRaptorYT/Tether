@@ -1,0 +1,11 @@
+<div className="carousel-item row active justify-content-around align-items-center">
+                          <button className="col-4">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT9i-t0o_ltZf_c5ZQ4F4kbuETdhNDdxsjIYKaofkjTM3BmHTqc" />
+                          </button>
+                          <button className="col-4">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT9i-t0o_ltZf_c5ZQ4F4kbuETdhNDdxsjIYKaofkjTM3BmHTqc" />
+                          </button>
+                          <button className="col-4">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT9i-t0o_ltZf_c5ZQ4F4kbuETdhNDdxsjIYKaofkjTM3BmHTqc" />
+                          </button>
+                        </div>

@@ -2,7 +2,13 @@ import React, { Component } from "react";
 import io from "socket.io-client";
 import faker from "faker";
 
-import { IconButton, Badge, Input, Button } from "@material-ui/core";
+import {
+  IconButton,
+  Badge,
+  Input,
+  Button,
+  ThemeProvider,
+} from "@material-ui/core";
 import VideocamIcon from "@material-ui/icons/Videocam";
 import VideocamOffIcon from "@material-ui/icons/VideocamOff";
 import MicIcon from "@material-ui/icons/Mic";
@@ -64,6 +70,7 @@ class Video extends Component {
       username: faker.internet.userName(),
       stickerArr: [],
       page: 1,
+      currentPage: 1,
     };
     connections = {};
 
@@ -521,35 +528,90 @@ class Video extends Component {
   handleUsername = (e) => this.setState({ username: e.target.value });
   updateCarousel = () => {
     var itemArr = $(".carousel-item");
-    for (var i in itemArr) {
+    console.log(itemArr);
+    for (var i = 0; i < itemArr.length; i++) {
       if (itemArr[i].classList.contains("active")) {
+        this.state.currentPage = parseInt(i);
         break;
       }
     }
     console.log(i);
-    this.state.page = parseInt(i) + 1;
-    document.getElementById("carouselNum").innerHTML = `${parseInt(i) + 1} / ${
-      itemArr.length
-    }`;
+    this.state.currentPage = parseInt(i) + 1;
+    setTimeout(
+      (document.getElementById("carouselNum").innerHTML = `${
+        parseInt(i) + 1
+      } / ${itemArr.length}`),
+      100
+    );
   };
   showReaction = () => {
-    $("#tooltip").toggleClass("show");
     axios
       .get(`http://localhost:4000/sticker/search/${this.state.page}/1/`)
       .then((response) => {
-        console.log(response.data);
-        console.log("woooo");
-        console.log(response.data.love);
-        console.log("Get image url");
-        console.log(response.data.love[0].image);
-        window.urlss = response.data.love[5].image;
-        console.log(window.urlss);
+        if (
+          $("#carousel-inner").children().length == 0 ||
+          $("#carousel-inner").children()[0].tagName == "P"
+        ) {
+          $("#carousel-inner").html(
+            $("<div>", {
+              id: `${this.state.page}`,
+              class:
+                "carousel-item row active justify-content-around align-items-center m-0 p-3",
+            })
+          );
+        } else {
+          $("#carousel-inner").append(
+            $("<div>", {
+              id: `${this.state.page}`,
+              class:
+                "carousel-item row active justify-content-around align-items-center m-0 p-3",
+            })
+          );
+        }
+        for (var j in response.data) {
+          for (var i in response.data[j]) {
+            if (
+              $("#carousel-inner .carousel-item")
+                .eq(this.state.page - 1)
+                .children().length < 6
+            ) {
+              $("#carousel-inner .carousel-item")
+                .eq(this.state.page - 1)
+                .append(
+                  `<button style="background: none; width:33%; border: none;" class="sticker col-4 p-2" onclick="sendSticker()"><img src="${response.data[j][i].image}" style="width:100%"/></button>`
+                );
+            } else {
+              this.state.page += 1;
+              $("#carousel-inner").append(
+                $("<div>", {
+                  id: `${this.state.page}`,
+                  class:
+                    "carousel-item row justify-content-around align-items-center m-0 p-3",
+                })
+              );
+              $("#carousel-inner .carousel-item")
+                .eq(this.state.page)
+                .append(
+                  `<button style="background: none; width:33%; border: none;" class="sticker col-4 p-2" onClick="sendSticker()"><img src="${response.data[j][i].image}" style="width:100%"/></button>`
+                );
+            }
+          }
+          this.updateCarousel();
+        }
+        // console.log(response.data);
+        // console.log("woooo");
+        // console.log(response.data.love);
+        // console.log("Get image url");
+        // console.log(response.data.love[0].image);
+        // window.urlss = response.data.love[5].image;
+        // console.log(window.urlss);
         // https://img.stipop.io/2020/9/14/1600154546216_15.gif
         // Here
       })
       .catch((error) => {
         console.log(error);
       });
+    $("#tooltip").toggleClass("show");
     return false;
     console.log("wutututu");
     console.log(window.urlss);
@@ -557,7 +619,11 @@ class Video extends Component {
     // this.state.message = `<img src="${window.urlss}https://media.discordapp.net/attachments/910885868733087747/927432549515538442/92172b31-e454-460b-a892-6ae0595b179f.png">`;
     // socket.emit("chat-message", this.state.message, this.state.username);
   };
+  sendSticker = () => {
+    console.log(this.sticker);
+  };
   searchSticker = () => {
+    this.state.page = 1;
     if (this.state.reactionSearch.length > 0)
       axios
         .get(
@@ -565,9 +631,29 @@ class Video extends Component {
         )
         .then((response) => {
           console.log(response.data);
+          $("#carousel-inner").html(
+            $("<div>", {
+              id: `${this.state.page}`,
+              class:
+                "carousel-item row active justify-content-around align-items-center m-0 p-3",
+            })
+          );
+          for (var i in response.data) {
+            console.log(response.data[i].image);
+            // if ($("#carousel-inner").children())
+
+            $("#carousel-inner .carousel-item")
+              .eq(this.state.page - 1)
+              .append(
+                `<button style="background: none; width:33%; border: none;" class="sticker col-4 p-2" onclick="sendSticker()"><img src="${response.data[i].image}" style="width:100%"/></button>`
+              );
+          }
         })
         .catch((error) => {
           console.log(error);
+          $("#carousel-inner").html(
+            `<p style="display:flex; justify-content:center; align-items: center; height:208.875px;width:300px" class="p-3 m-0">No stickers in ${this.state.reactionSearch}</p>`
+          );
         });
   };
   sendMessage = () => {
@@ -859,7 +945,14 @@ class Video extends Component {
                       <Input
                         placeholder="Search Sticker"
                         value={this.state.reactionSearch}
+                        style={{ color: "white" }}
                         onChange={(e) => this.handleSearch(e)}
+                        onKeyDown={(e) => {
+                          var keyCode = e.keyCode ? e.keyCode : e.which;
+                          if (keyCode == 13) {
+                            this.searchSticker();
+                          }
+                        }}
                       />
                       <button
                         style={{
@@ -881,19 +974,7 @@ class Video extends Component {
                         className="carousel-indicators"
                         id="carouselNum"
                       ></div>
-                      <div className="carousel-inner">
-                        <div className="carousel-item row active justify-content-around align-items-center">
-                          <button className="col-4">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT9i-t0o_ltZf_c5ZQ4F4kbuETdhNDdxsjIYKaofkjTM3BmHTqc" />
-                          </button>
-                          <button className="col-4">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT9i-t0o_ltZf_c5ZQ4F4kbuETdhNDdxsjIYKaofkjTM3BmHTqc" />
-                          </button>
-                          <button className="col-4">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT9i-t0o_ltZf_c5ZQ4F4kbuETdhNDdxsjIYKaofkjTM3BmHTqc" />
-                          </button>
-                        </div>
-                      </div>
+                      <div className="carousel-inner" id="carousel-inner"></div>
                       <a
                         className="carousel-control-prev"
                         href="#carouselExampleIndicators"
