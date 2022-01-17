@@ -35,73 +35,24 @@
     ></script>
   </head>
   <body class="start-page">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-transparent px-4 py-2">
-      <a
-        class="navbar-brand d-flex justify-content-center align-items-center"
-        style="gap: 10px"
-        href="#"
-        ><img src="./img/Tether.png" width="60" />
-        <p class="m-0">Tether</p></a
-      >
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#"
-              >Home <span class="sr-only">(current)</span></a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./login.html">Link</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Dropdown
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </nav>
 
-    <div class="header-row d-flex align-items-center">
-      <h1 class="text-dark display-2"><b>Meeting And Note Taking Into One</b></h1>
+    <div class="header-row d-flex align-items-center justify-content-center">
+      <a href="login.html" style="position:absolute; top: 0%;gap:10px;left:15px" class="text-decoration-none d-flex align-items-center justify-content-between">
+          <img src="./img/Tether.png" width="60" />
+          <p class="m-0">Tether</p>
+      </a>
+      <h1 class="text-white font-weight-bold display-2 text-center">Meeting & Note Taking Into One</h1>
     </div>
 
     <div class=" w-100 h-100">
 
-      <div class="row w-100 h-100 glass">
+      <div class="row w-100 h-100 glass mx-0">
         <!-- link to localhost 8000 -->
         <div class="zoom-image">
 
         </div>
-
-
-          <h2 class ="mt-1">Premium video meetings for everyone</h2>
-        <form class ="mb-4" action="http://localhost:8000/">
+          <h2 class ="my-3">Premium video meetings for everyone</h2>
+        <form class ="mb-2" action="http://localhost:8000/">
           <input
             type="submit"
             class="border-primary p-3"
@@ -109,17 +60,17 @@
           />
         </form>
 
-        <input type="number border-dark" placeholder="Enter a code or link" />
+        <!-- <input type="number border-dark" placeholder="Enter a code or link" /> -->
         <!-- <a href="http://localhost:8000/" class="button">Video Call</a> -->
       </div>
     </div>
-
+<br/>
       <!-- link to notion page aka what he sent to the chat -->
-      <div class="row glass w-100 pb-5 mb-5">
+      <div class="row glass w-100 pb-5 mb-5 mx-0">
         <div class="notion-image">
 
         </div>
-        <h2>Enter Notion Page</h2>
+        <h2 class="my-3">Enter Notion Page</h2>
         <form
           action="https://placid-desk-f42.notion.site/Calendar-0b7ef1bc3f71462b8ebd768b880765ba"
         >
